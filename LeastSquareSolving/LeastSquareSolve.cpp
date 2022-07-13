@@ -31,5 +31,14 @@ int main(int argc, char * argv[]){
 
 	std::cout << "x : \n" << x << std::endl;
 
+	double wData[9] = { 8.0, -4.0, 0.0, -4.0, 16.0, -4.0, 0.0, -4.0, 8.0 };
+	double bData[3] = { 4.816496, -3.550510, 3.632993 };
+	Eigen::Map<Eigen::Matrix3d> w2(wData, 3, 3);
+	Eigen::Map<Eigen::Vector3d> b2(bData);
+	std::cout << w2 << std::endl;
+	std::cout << b2 << std::endl;
+	Eigen::Vector3d x2 = (w2.transpose() * w2).ldlt().solve(w2.transpose() * b2);
+	std::cout << "x2 : \n" << x2 << std::endl;
+
 	return 0;
 }
